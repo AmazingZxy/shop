@@ -8,11 +8,22 @@ public class Category implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String type;
 	private Boolean hot;
 
+	
+	
 	// Constructors
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", type=" + type + ", hot=" + hot + "]";
+	}
 
 	/** default constructor */
 	public Category() {

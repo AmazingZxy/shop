@@ -4,10 +4,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	
-	<bean id="categoryService" class="cn.it.shop.service.impl.CategoryServiceImpl">
+	<!-- 单例的，但是泛型类不能被实例化 -->
+	<bean id="baseService" class="cn.it.shop.service.impl.BaseServiceImpl" lazy-init="true">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
+	<bean id="categoryService" class="cn.it.shop.service.impl.CategoryServiceImpl" parent="baseService"/>
 	
 	<bean id="date" class="java.util.Date"></bean>
 	 

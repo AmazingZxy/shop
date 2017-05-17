@@ -1,10 +1,12 @@
 package cn.it.shop.service;
 
+
+
+
 import cn.it.shop.model.Category;
 
-public interface CategoryService {
+public interface CategoryService extends BaseService<Category>{
+
 	
-	public void save(Category category);
 	
-	public void update(Category category);
 }

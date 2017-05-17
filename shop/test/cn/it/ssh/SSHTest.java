@@ -44,7 +44,7 @@ public class SSHTest {
 	
 	@Test //测试hibernateand spring
 	public void hibernateAndSpring(){
-		categoryService.update(new Category(1,"女士休闲",false));
+		categoryService.update(new Category(4,"女士休闲33",false));
 		
 		
 	}
