@@ -1,9 +1,9 @@
 package cn.it.shop.model;
 
-/**
- * Category entity. @author MyEclipse Persistence Tools
- */
+import org.hibernate.annotations.Entity;
 
+
+@Entity
 public class Category implements java.io.Serializable {
 
 	// Fields

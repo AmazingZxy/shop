@@ -11,6 +11,8 @@
 	
 	<bean id="categoryService" class="cn.it.shop.service.impl.CategoryServiceImpl" parent="baseService"/>
 	
+	<bean id="accountService" class="cn.it.shop.service.impl.AccountServiceImpl" parent="baseService"/>
+	
 	<bean id="date" class="java.util.Date"></bean>
 	 
 	 
