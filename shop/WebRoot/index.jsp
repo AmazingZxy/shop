@@ -1,16 +1,16 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-  
+  	<%@ include file="/public/head.jspf" %>
   </head>
   
  <body>
-     <a href="${pageContext.request.contextPath}/category_update.action?category.id=2&category.type=儿童休闲&category.hot=false">访问action 测试ssh环境</a>
+ 	
+ 	 <a href="send_main_aindex.action">直接到后台 ui版本</a>
+ 	 <a href="send_main_index.action">直接到后台</a>
+     <a href="${shop}/category_update.action?category.id=2&category.type=儿童休闲&category.hot=false">访问action 测试ssh环境</a>
      
-     <a href="${pageContext.request.contextPath}/category_update.action?id=2&type=儿童休闲&hot=false">模型驱动测试</a>
+     <a href="${shop}/category_update.action?id=2&type=儿童休闲&hot=false">模型驱动测试</a>
      
      
      <!-- javascript只能用这个 -->

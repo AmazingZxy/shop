@@ -18,5 +18,8 @@
 	<bean id="categoryAction" class="cn.it.shop.action.CategoryAction" parent="baseAction" />
 	
 	<bean id="accountAction" class="cn.it.shop.action.AccountAction" parent="baseAction" />
+	
+	<!-- 这个action没有用于数据存储，也不需要调用业务逻辑，因此单例即可 -->
+	<bean id="sendAction" class="cn.it.shop.action.SendAction"/>
 
 </beans>

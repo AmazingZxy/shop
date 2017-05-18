@@ -2,12 +2,23 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="shop" extends="struts-default">
+
+	
+		<global-results>
+			<result name="aindex">/WEB-INF/main/aindex.jsp</result>
+		</global-results>
+		
 		<action name="category_*" class="categoryAction" method="{1}">
 			<result name="index">/index.jsp</result>
 		</action>
 		
 		<action name="account_*" class="accountAction" method="{1}">
 			<result name="index">/index.jsp</result>
+		</action>
+		
+		<!-- 用来完成系统在转发的action  所有的请求都交给了sendAction-->
+		<action name="send_*_*" class="sendAction">
+			<result name="send">/WEB-INF/{1}/{2}.jsp</result>
 		</action>
 		
 	</package>
