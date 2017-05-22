@@ -7,19 +7,23 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 	
-	<!-- 这列不用配id，自己不用是喜欢，而且property默认就是使用的时候在创建爱你，不会启动的时候就创建 -->
+	
+	<!-- 这列不用配id，自己不用是喜欢，而且property默认就是使用的时候在创建爱你，不会启动的时候就创建 
+	
 	<bean id="baseAction" class="cn.it.shop.action.AcctionAction" scope="prototype">
 		<property name="categoryService" ref="categoryService"/>
 		<property name="accountService" ref="accountService"/>
 	</bean>
 	
 	
-	<!--  这里是 action注入bean就行，所以不用写成cn.it.shop.action.CategoryAction-->
+	 这里是 action注入bean就行，所以不用写成cn.it.shop.action.CategoryAction
+	  
 	<bean id="categoryAction" class="cn.it.shop.action.CategoryAction" parent="baseAction" />
 	
 	<bean id="accountAction" class="cn.it.shop.action.AccountAction" parent="baseAction" />
 	
-	<!-- 这个action没有用于数据存储，也不需要调用业务逻辑，因此单例即可 -->
+	这个action没有用于数据存储，也不需要调用业务逻辑，因此单例即可 
+	
 	<bean id="sendAction" class="cn.it.shop.action.SendAction"/>
-
+	 -->
 </beans>

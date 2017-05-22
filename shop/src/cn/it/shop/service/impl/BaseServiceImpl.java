@@ -3,8 +3,12 @@ package cn.it.shop.service.impl;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 
 import sun.reflect.generics.tree.ReturnType;
 
@@ -14,6 +18,8 @@ import cn.it.shop.service.CategoryService;
 import cn.it.shop.util.HibernateSessionFactory;
 
 @SuppressWarnings("unchecked")
+@Service("baseService")
+@Lazy(true)
 public class BaseServiceImpl<T>  implements BaseService<T> {
 	
 
@@ -31,13 +37,13 @@ public class BaseServiceImpl<T>  implements BaseService<T> {
 		clazz = (Class) type.getActualTypeArguments()[0];
 	}
 	
-
+	@Resource  //没有指定名称，默认是属性的名称和id捆绑 调用set方法
 	private  SessionFactory sessionFactory;
 	
 	//继承机制，这个依赖了，下面继承的子类就不用依赖SessionFac
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+//	public void setSessionFactory(SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
 	
 	protected Session getSession(){
 		//从当前线程获取session，如果没有则创建新session

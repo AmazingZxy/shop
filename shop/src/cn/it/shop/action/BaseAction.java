@@ -3,9 +3,13 @@ package cn.it.shop.action;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import cn.it.shop.model.Category;
 import cn.it.shop.service.AccountService;
@@ -26,6 +30,8 @@ import com.opensymphony.xwork2.ModelDriven;
   * @author AmazingZ
   * @date 2017-5-17下午10:00:26
  */
+@Controller
+@Scope("prototype")
 public class BaseAction<T> extends ActionSupport implements RequestAware,SessionAware,ApplicationAware, ModelDriven<T>{
 	
 	protected T model;
@@ -43,20 +49,22 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	}
 	
 	//这里的service是单利的，所以不用担心每次都会创建一遍，其实他们只需要开始的时候创建一遍就好了
+	@Resource
 	protected CategoryService categoryService;
 	
+	@Resource
 	protected AccountService accountService;
 		
 	
 	
 
-	public void setAccountService(AccountService accountService) {
-		this.accountService = accountService;
-	}
-
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
+//	public void setAccountService(AccountService accountService) {
+//		this.accountService = accountService;
+//	}
+//
+//	public void setCategoryService(CategoryService categoryService) {
+//		this.categoryService = categoryService;
+//	}
 	
 	/**
 	 * 
