@@ -2,12 +2,13 @@
 <html>
   <head>
  	<%@ include file="/public/head.jspf" %>
+ 	 <style type="text/css">
+ 	 		
+ 	 </style>
  	 
- 	
   </head>
   
  <body>
    
-     类别管理
   </body>
 </html>

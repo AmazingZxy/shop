@@ -30,14 +30,29 @@
  	 <script type="text/javascript">
  	 	$(function(){
  	 	$("a[title]").click(function(){
+		 	 	var text = $(this).text();
+		 	 	var href = $(this).attr("title");
  	 			//1 判断当前后边是否已经有相应的tab
+ 	 			if($("#tt").tabs("exists",text)){
+ 	 				$("#tt").tabs("select",text);
+ 	 			}else{
+ 	 				$("#tt").tabs("add",{
+ 	 					title:text,
+ 	 					closable:true,
+ 	 					context:'<frame src="send_category_query.action" frameborder="0" width ="100%" height="100%" />'
+ 	 					//href 默认是通过URL地址，加载远程的页面，但是仅仅是body页面
+ 	 					//href:'send_category_query.action'
+ 	 				});
+ 	 			}
  	 			//2 如果没有则创建一个新的tag，否则切换到当前tab
  	 		});
- 	 	})
+ 	 	});
  	 </script> 
   </head>
   
-	<body class="easyui-layout">   
+	<body class="easyui-layout">  
+	
+		
 	    <div data-options="region:'north',title:'欢迎来到易购后台管理系统',split:true" style="height:100px;"></div>     
 	    <div data-options="region:'west',title:'系统操作',split:true" style="width:200px;">
 	    	

@@ -19,5 +19,7 @@
         <property name="pass" type="java.lang.String">
             <column name="pass" length="20" />
         </property>
+     
+      
     </class>
 </hibernate-mapping>
