@@ -49,7 +49,7 @@ public class CategoryServiceImplTest {
 	
 	@Test
 	public void testqueryAccount() {
-		for(Category temp:categoryService.queryJoinAccount("")){
+		for(Category temp:categoryService.queryJoinAccount("",2,2)){
 			System.out.println(temp);
 			System.out.println(temp.getAccount());
 		}

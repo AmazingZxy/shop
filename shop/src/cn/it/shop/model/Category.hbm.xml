@@ -18,11 +18,12 @@
         </property>
            <!-- lazy-false：级联查询关联对象 c 需要添加：cn.it.shop.model
            N+1问题，首先发出一套语句查询当前的对象，然后发出N条语句查询查询关联对象，n不确定，所以效率低
-           fetch：什么样的方式加载对象，可以选择select（默认）和join
+           fetch：什么样的方式加载对象，可以选择select（默认）和join   在任何的情况下lazy="false" fetch="join"
            
            注意在mangy-to-one 的情况下，join是无效的，即使有效，也要配置前面两个参数，因为配置xml不灵活
+           解决方案：自己写HQL语句取代基于XML的配置，则可以提升性能
            -->
-          <many-to-one name="account" class="Account" lazy="false" fetch="join">
+          <many-to-one name="account" class="Account">
         	<column name="aid"/>
         </many-to-one>
     </class>

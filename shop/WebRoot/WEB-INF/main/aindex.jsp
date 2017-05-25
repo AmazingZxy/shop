@@ -34,12 +34,15 @@
 		 	 	var href = $(this).attr("title");
  	 			//1 判断当前后边是否已经有相应的tab
  	 			if($("#tt").tabs("exists",text)){
+ 	 			
  	 				$("#tt").tabs("select",text);
  	 			}else{
  	 				$("#tt").tabs("add",{
  	 					title:text,
+ 	 					
  	 					closable:true,
- 	 					context:'<frame src="send_category_query.action" frameborder="0" width ="100%" height="100%" />'
+ 	 					content:'<iframe src="send_category_query.action" frameborder="0" width ="100%" height="100%" />'
+ 	 					//context:'正文雷人'
  	 					//href 默认是通过URL地址，加载远程的页面，但是仅仅是body页面
  	 					//href:'send_category_query.action'
  	 				});
