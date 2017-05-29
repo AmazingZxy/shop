@@ -18,17 +18,9 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 		super();
 	}
 
-	@Override
-	public void save(Category t) {
-		getSession().save(t);
-		
-	}
+	
 
-	@Override
-	public void update(Category t) {
-		
-		
-	}
+	
 
 	@Override
 	public List<Category> queryJoinAccount(String type,int   page,int size) {

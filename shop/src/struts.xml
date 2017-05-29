@@ -32,6 +32,13 @@
 		
 		<action name="account_*" class="accountAction" method="{1}">
 			<result name="index">/index.jsp</result>
+			<result name="jsonList" type="json">
+				<param name="root">jsonList</param>
+				<param name="excludeProperties">
+					<!-- [0 .pass,[1].pass-->
+					\[\d+\]\.pass,\[\d+\]\.name
+				</param>
+			</result>
 		</action>
 		
 		<!-- 用来完成系统在转发的action  所有的请求都交给了sendAction-->

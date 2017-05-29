@@ -23,9 +23,9 @@ public class AccountAction extends BaseAction<Account>{
 	
 	
 	public String query(){
-		System.out.println(model);
-	
-		return "index";
+		//System.out.println(model);
+		jsonList = accountService.query();
+		return "jsonList";
 	}
 	
 	

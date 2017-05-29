@@ -1,6 +1,8 @@
 package cn.it.shop.service.impl;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -23,7 +25,13 @@ public class AccountServiceImplTest {
 		accountService.save(new Account("admin", "¥Û«ø", "aaa"));
 	}
 
-	
+	@Test
+	public void testQuery(){
+		List<Account> list = accountService.query();
+		for(Account a:list){
+			System.out.println(a.getLogin());
+		}
+	}
 
 
 }

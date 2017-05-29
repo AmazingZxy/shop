@@ -2,6 +2,7 @@ package cn.it.shop.action;
 
 import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -40,7 +41,9 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected  String ids;//获取被删除的ids
 	//用流返回，和 json一个道理
 	protected InputStream inputStream ;
-		
+	
+	protected List<T> jsonList = null;
+
 
 	protected Integer page;
 	
@@ -154,7 +157,13 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 		this.inputStream = inputStream;
 	}
 
-	
+	public void setJsonList(List<T> jsonList) {
+		this.jsonList = jsonList;
+	}
+	//get方法必须有
+	public List<T> getJsonList() {
+		return jsonList;
+	}
 	
 
 }

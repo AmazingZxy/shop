@@ -41,8 +41,8 @@
 					handler: function(){
 						parent.$("#win").window({
 							title:"添加类别",
-							width:300,
-							height:200,
+							width:320,
+							height:180,
 							content:'<iframe src="send_category_save.action" frameborder="0" width ="100%" height="100%" />'
 						});
 					}
@@ -50,7 +50,29 @@
 					iconCls: 'icon-edit',
 					text:'更新类别',
 					handler: function(){
-						alert('帮助按钮')
+						//alert('帮助按钮')
+						//1.判断是否有选中的记录
+						var rows = $("#dg").datagrid("getSelections");
+						if(rows.length!=1){
+							//alert("更新");
+							$.messager.show({
+								title:'错误提示',
+								msg:'只能更新一行',
+								timeout:'2000',
+								showType:'slide'
+							});		
+						}else{
+							//1 弹出更新页面
+							//alert("zxcvvbbv");
+							parent.$("#win").window({
+								title:'更新类别',
+								width:320,
+								height:250,
+								content:'<iframe src="send_category_update.action" frameborder="0" width ="100%" height="100%" />'
+							});
+							
+						}
+						
 					}
 				},'-',{
 					iconCls: 'icon-remove',
@@ -85,6 +107,8 @@
 									$.post("category_deleteByIds.action",{ids:ids},
 										function(result){
 											if(result=="true"){
+											//取消选中的所有行
+											$("#dg").datagrid("uncheckAll");
 											//重新刷新当前页
 												$("#dg").datagrid("reload");
 												//alert("----删除成功");
