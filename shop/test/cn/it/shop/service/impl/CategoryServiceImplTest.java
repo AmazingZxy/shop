@@ -62,6 +62,6 @@ public class CategoryServiceImplTest {
 	
 	@Test
 	public void deleteids(){
-		categoryService.deleteByIds("12");
+		categoryService.deleteByIds("10");
 	}
 }

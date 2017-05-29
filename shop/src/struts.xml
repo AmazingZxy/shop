@@ -24,6 +24,10 @@
 					rows\[\d+\]\.account\.name
 				</param>
 			</result>
+			<!-- 返回流 -->
+			<result name="stream" type="stream">
+				<param name="inputName">inputStream</param>
+			</result>
 		</action>
 		
 		<action name="account_*" class="accountAction" method="{1}">

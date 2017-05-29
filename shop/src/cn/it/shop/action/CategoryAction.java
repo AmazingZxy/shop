@@ -1,5 +1,7 @@
 package cn.it.shop.action;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,9 +37,17 @@ public class CategoryAction extends BaseAction<Category>{
 		return "jsonMap";
 	}
 	
-
-
 	
+	public String deleteByIds(){
+		System.out.println("删除的id为："+ids);
+		categoryService.deleteByIds(ids);//过来的话下面就会执行
+		inputStream =  new ByteArrayInputStream("true".getBytes());
+		return "stream";//用流返回
+	}
 	
+	public void save(){
+		System.out.println(model);
+		categoryService.save(model);
+	}
 	
 }

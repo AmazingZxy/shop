@@ -1,5 +1,6 @@
 package cn.it.shop.action;
 
+import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
@@ -36,6 +37,11 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	
 	protected T model;
 	
+	protected  String ids;//获取被删除的ids
+	//用流返回，和 json一个道理
+	protected InputStream inputStream ;
+		
+
 	protected Integer page;
 	
 	protected Integer rows;
@@ -131,5 +137,24 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 		
 		this.pageMap = pageMap;
 	}
+	
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
+	
+	
 
 }

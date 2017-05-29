@@ -2,6 +2,17 @@
 <html>
   <head>
  	<%@ include file="/public/head.jspf" %>
+ 	 <style type="text/css">
+ 	 	body{
+ 	 		margin:1px;
+ 	 	}
+ 	 	.searchbox{
+ 	 		display:inline-block;
+ 	 		white-space:nowrap;
+ 	 		margin:-3;
+ 	 		padding:0;
+ 	 	}
+ 	 </style>
  	 <script type="text/javascript">
  	 	//alert("----");
  	 	$(function(){
@@ -28,7 +39,12 @@
 					iconCls: 'icon-add',
 					text:'添加类别',
 					handler: function(){
-						alert('编辑按钮')
+						parent.$("#win").window({
+							title:"添加类别",
+							width:300,
+							height:200,
+							content:'<iframe src="send_category_save.action" frameborder="0" width ="100%" height="100%" />'
+						});
 					}
 				},'-',{
 					iconCls: 'icon-edit',
@@ -66,14 +82,21 @@
 									//2凭借id的值，发送到后台
 									ids = ids.substring(0, ids.lastIndexOf(","));
 									//3 发送ajax请求
-									$.post("category_deleteById.action",
-										{ids:ids},
-										function(){
-										if(result=="true"){
-											alert("----删除成功");
-										}else{
-											alert("=---删除失败");
-										}
+									$.post("category_deleteByIds.action",{ids:ids},
+										function(result){
+											if(result=="true"){
+											//重新刷新当前页
+												$("#dg").datagrid("reload");
+												//alert("----删除成功");
+											}else{
+												//alert("---删除失败---");
+												$.messager.show({
+													title:'错误提示',
+													msg:'删除失败，请检查',
+													timeout:'2000',
+													showType:'slide'
+												});
+											}
 									},"text");
 								}
 							});
@@ -133,9 +156,7 @@
   </head>
   
  <body>
-   	 <script type="text/javascript">
-   	 	//alert("===");
-   	 </script>
    	<table id="dg"></table> 
+   	
   </body>
 </html>

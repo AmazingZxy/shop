@@ -20,13 +20,13 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 
 	@Override
 	public void save(Category t) {
-		// TODO Auto-generated method stub
+		getSession().save(t);
 		
 	}
 
 	@Override
 	public void update(Category t) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
