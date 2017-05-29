@@ -49,6 +49,16 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 		.uniqueResult();
 		
 	}
+
+	@Override
+	public void deleteByIds(String ids) {
+		//这样写由于setString设置最后是int ,所以只能删除第一个
+		//String hql = "DELETE from Category WHERE id in (:ids)";
+		//getSession().createQuery(hql).setString("ids", ids).executeUpdate();
+		String hql = "DELETE from Category WHERE id in (" + ids + ")";
+		getSession().createQuery(hql).executeUpdate();
+		
+	}
 	
 	
 

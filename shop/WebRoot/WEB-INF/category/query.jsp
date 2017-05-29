@@ -55,7 +55,26 @@
 							//执行删除的逻辑
 							$.messager.confirm('删除确认对话框','是否删除选中的记录!',function(r){
 								if(r){
-									alert("自己实现删除的逻辑");
+								//1 获取被选中的记录，和相应的id
+									//alert("自己实现删除的逻辑");
+									var ids = " ";
+									for(var i=0;i<rows.length;i++){
+										ids+=rows[i].id+",";
+									}
+									
+									
+									//2凭借id的值，发送到后台
+									ids = ids.substring(0, ids.lastIndexOf(","));
+									//3 发送ajax请求
+									$.post("category_deleteById.action",
+										{ids:ids},
+										function(){
+										if(result=="true"){
+											alert("----删除成功");
+										}else{
+											alert("=---删除失败");
+										}
+									},"text");
 								}
 							});
 						}

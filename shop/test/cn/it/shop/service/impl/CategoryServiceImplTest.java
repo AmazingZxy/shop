@@ -59,4 +59,9 @@ public class CategoryServiceImplTest {
 	public void getCount(){
 		System.out.println(categoryService.getCount(""));
 	}
+	
+	@Test
+	public void deleteids(){
+		categoryService.deleteByIds("12");
+	}
 }
