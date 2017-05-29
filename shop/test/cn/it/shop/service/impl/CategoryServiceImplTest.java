@@ -54,6 +54,9 @@ public class CategoryServiceImplTest {
 			System.out.println(temp.getAccount());
 		}
 	}
-
-
+	
+	@Test
+	public void getCount(){
+		System.out.println(categoryService.getCount(""));
+	}
 }

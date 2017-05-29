@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="shop" extends="struts-default">
+<!-- 开发模式，修改struts配置文件不需要重启容器 -->
+	<constant name="struts.devMode" value="true"/>
 
-	
+  <!-- struts-default  在json-default都有。并且增加了struts整合json的样式-->
+	<package name="shop" extends="json-default">	
 		<global-results>
 			<result name="aindex">/WEB-INF/main/aindex.jsp</result>
 		</global-results>
 		
 		<action name="category_*" class="categoryAction" method="{1}">
 			<result name="index">/index.jsp</result>
+			<!-- 先添加json包，然后继承json-defalut -->
+			<result name="jsonMap" type="json">
+			<!--  -->如果配置root,就把root转化为json格式，没有root，就把值栈栈顶对象转为json格式
+				<param name="root">pageMap</param>
+				<!-- 配置白名单，过滤不需要的选项 支持正则表达式
+					{total:3,rows:[{account:{id:1,login:admin,name:管理员,pass:admin},host:true,id:1,type:男士休闲},...]}
+				 -->
+				<param name="excludeProperties">
+					rows\[\d+\]\.account\.pass,
+					rows\[\d+\]\.account\.name
+				</param>
+			</result>
 		</action>
 		
 		<action name="account_*" class="accountAction" method="{1}">

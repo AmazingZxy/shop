@@ -35,6 +35,15 @@ import com.opensymphony.xwork2.ModelDriven;
 public class BaseAction<T> extends ActionSupport implements RequestAware,SessionAware,ApplicationAware, ModelDriven<T>{
 	
 	protected T model;
+	
+	protected Integer page;
+	
+	protected Integer rows;
+	
+	public Map<String,Object> pageMap = null;
+
+	
+
 	@Override
 	public T getModel() {
 		ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
@@ -93,7 +102,34 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 		// TODO Auto-generated method stub
 		this.application = application;
 	}
-
 	
+	
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getRows() {
+		return rows;
+	}
+
+	public void setRows(Integer rows) {
+		this.rows = rows;
+	}
+	
+	
+	public Map<String, Object> getPageMap() {
+		System.out.println("-------------------pageMap-------------------------");
+		return pageMap;
+	}
+
+	public void setPageMap(Map<String, Object> pageMap) {
+		
+		this.pageMap = pageMap;
+	}
 
 }
