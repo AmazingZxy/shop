@@ -30,7 +30,7 @@
 			    //自适应，设置后会出现水平的滚动条
 			    fitColumns:true,
 			    //单行显示，默认值就是true
-			    singleSelect:true,
+			    singleSelect:false,
 			    //设置分页
 			    pagination:true,
 			    pageSize:5,

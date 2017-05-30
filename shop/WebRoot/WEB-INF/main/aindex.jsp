@@ -6,7 +6,7 @@
  	<style type="text/css">
  	 	#menu{
  	 		width: 200px;
- 	 		///border:1px solid red;
+ 	 		border:1px solid red;
  	 	}
  	 	#menu ul{
  	 		list-style:none;
@@ -38,10 +38,9 @@
  	 				$("#tt").tabs("select",text);
  	 			}else{
  	 				$("#tt").tabs("add",{
- 	 					title:text,
- 	 					
+ 	 					title:text, 					
  	 					closable:true,
- 	 					content:'<iframe title="类别管理" src="send_category_query.action" frameborder="0" width ="100%" height="100%" />'
+ 	 					content:'<iframe title=' + text + ' src='+href+' frameborder="0" width ="100%" height="100%" />'
  	 					//context:'正文雷人'
  	 					//href 默认是通过URL地址，加载远程的页面，但是仅仅是body页面
  	 					//href:'send_category_query.action'
@@ -64,7 +63,7 @@
 		     	<div title="基本操作" data-options="iconCls:'icon-save'">
 		     		<ul>
 		     		<li><a href="#" title="send_category_query.action">类别管理</a></li>
-		     		<li><a href="#">商品管理</a></li>
+		     		<li><a href="#" title="send_product_query.action">商品管理</a></li>
 		     	</ul>
 		    	 </div>
 		    	<div title="基本操作" data-options="iconCls:'icon-save'">

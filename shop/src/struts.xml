@@ -41,6 +41,17 @@
 			</result>
 		</action>
 		
+		<action name="product_*" class="productAction" method="{1}">		
+			<result name="jsonMap" type="json">
+				<param name="root">pageMap</param>
+				<param name="excludeProperties">
+					<!-- 黑名单，禁止多余的懒加载 -->
+					rows\[\d+\]\.category\.account,
+					rows\[\d+\]\.date
+				</param>
+			</result>
+		</action>
+		
 		<!-- 用来完成系统在转发的action  所有的请求都交给了sendAction-->
 		<action name="send_*_*" class="sendAction">
 			<result name="send">/WEB-INF/{1}/{2}.jsp</result>
