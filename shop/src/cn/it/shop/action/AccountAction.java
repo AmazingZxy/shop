@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-//ModelDrean 此接口，必须实现getModel方法，这个方法呢会把返回的对象存储压到栈顶中
+//ModelDrean 姝ゆ帴鍙ｏ紝蹇呴』瀹炵幇getModel鏂规硶锛岃繖涓柟娉曞憿浼氭妸杩斿洖鐨勫璞″瓨鍌ㄥ帇鍒版爤椤朵腑
 @Controller
 @Scope("prototype")
 public class AccountAction extends BaseAction<Account>{

@@ -22,7 +22,7 @@ public class AccountServiceImplTest {
 
 	@Test
 	public void testSave() {
-		accountService.save(new Account("admin", "´óÇ¿", "aaa"));
+		accountService.save(new Account("admin", "å¤§å¼º", "aaa"));
 	}
 
 	@Test

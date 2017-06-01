@@ -9,12 +9,12 @@ import cn.it.shop.model.Category;
 
 public interface CategoryService extends BaseService<Category>{
 
-	//查询类别信息，级联管理员
-	public List<Category> queryJoinAccount(String type,int   page,int size);//分页查询
+	//鏌ヨ绫诲埆淇℃伅锛岀骇鑱旂鐞嗗憳
+	public List<Category> queryJoinAccount(String type,int   page,int size);//鍒嗛〉鏌ヨ
 	
-	public Long getCount(String type);//获得总记录数
+	public Long getCount(String type);//鑾峰緱鎬昏褰曟暟
 	
-	//根据ids删除多条记录
+	//鏍规嵁ids鍒犻櫎澶氭潯璁板綍
 	public void deleteByIds(String  ids);
 	
 }

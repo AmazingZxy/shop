@@ -6,11 +6,11 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * 用来完成请求转发的功能，所以不处理任何的逻辑<p>Title:SendAction </p>
+ * 鐢ㄦ潵瀹屾垚璇锋眰杞彂鐨勫姛鑳斤紝鎵�浠ヤ笉澶勭悊浠讳綍鐨勯�昏緫<p>Title:SendAction </p>
   * <p>Description: </p>
   * <p>Company: </p> 
   * @author AmazingZ
-  * @date 2017-5-18下午2:48:59
+  * @date 2017-5-18涓嬪崍2:48:59
  */
 @Controller
 public class SendAction extends ActionSupport{

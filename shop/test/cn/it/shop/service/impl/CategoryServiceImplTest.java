@@ -20,12 +20,12 @@ public class CategoryServiceImplTest {
 
 	@Test
 	public void testSave() {
-		categoryService.save(new Category("²âÊÔÒ»ÏÂ",true));
+		categoryService.save(new Category("æµ‹è¯•ä¸€ä¸‹",true));
 	}
 
 	@Test
 	public void testUpdate() {
-		categoryService.update(new Category(5,"²âÊÔ33",true));
+		categoryService.update(new Category(5,"æµ‹è¯•33",true));
 		
 	}
 

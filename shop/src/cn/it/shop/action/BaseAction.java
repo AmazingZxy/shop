@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -14,9 +15,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import cn.it.shop.model.Category;
+import cn.it.shop.model.FileImage;
 import cn.it.shop.service.AccountService;
 import cn.it.shop.service.CategoryService;
 import cn.it.shop.service.ProductService;
+import cn.it.shop.util.FileUpload;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -24,14 +27,14 @@ import com.opensymphony.xwork2.ModelDriven;
 /**
  * <p>Title:BaseAction </p>
  * 
- * ÏÈ´´½¨Action£¬ÔÚµ÷ÓÃÀ¹½ØÆ÷£¬ÕâÊÇStrutsµÄÆô¶¯Á÷³Ì
- * ÔÚÏîÄ¿µÄÆô¶¯µÄÊ±ºòstruts¹ıÂËÆ÷£¬Ò»¼¶°ÉÏàÓ¦µÄÄÚÖÃ¶ÔÏóºÍÄÚÖÃ¶ÔÏó¶ÔÓ¦µÄmap´æÔÚApplication
- * Èç¹ûÊµÏÖÁËÏàÓ¦µÄ***AwareµÄ½Ó¿Ú£¬¾Í»á´ÓApplicationÖĞÈ¡ÏàÓ¦µÄmap´«ÈëÀ¹½ØÆ÷£ºservletConfig
- * servletConfig£ºÊµÏÖÊ²Ã´½Ó¿Ú£¬×¢ÈëÊ²Ã´¶ÔÏó
+ * å…ˆåˆ›å»ºActionï¼Œåœ¨è°ƒç”¨æ‹¦æˆªå™¨ï¼Œè¿™æ˜¯Strutsçš„å¯åŠ¨æµç¨‹
+ * åœ¨é¡¹ç›®çš„å¯åŠ¨çš„æ—¶å€™strutsè¿‡æ»¤å™¨ï¼Œä¸€çº§å§ç›¸åº”çš„å†…ç½®å¯¹è±¡å’Œå†…ç½®å¯¹è±¡å¯¹åº”çš„mapå­˜åœ¨Application
+ * å¦‚æœå®ç°äº†ç›¸åº”çš„***Awareçš„æ¥å£ï¼Œå°±ä¼šä»Applicationä¸­å–ç›¸åº”çš„mapä¼ å…¥æ‹¦æˆªå™¨ï¼šservletConfig
+ * servletConfigï¼šå®ç°ä»€ä¹ˆæ¥å£ï¼Œæ³¨å…¥ä»€ä¹ˆå¯¹è±¡
   * <p>Description: </p>
   * <p>Company: </p> 
   * @author AmazingZ
-  * @date 2017-5-17ÏÂÎç10:00:26
+  * @date 2017-5-17ä¸‹åˆ10:00:26
  */
 @Controller
 @Scope("prototype")
@@ -39,8 +42,8 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	
 	protected T model;
 	
-	protected  String ids;//»ñÈ¡±»É¾³ıµÄids
-	//ÓÃÁ÷·µ»Ø£¬ºÍ jsonÒ»¸öµÀÀí
+	protected  String ids;//è·å–è¢«åˆ é™¤çš„ids
+	//ç”¨æµè¿”å›ï¼Œå’Œ jsonä¸€ä¸ªé“ç†
 	protected InputStream inputStream ;
 	
 	protected List<T> jsonList = null;
@@ -52,7 +55,7 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	
 	public Map<String,Object> pageMap = null;
 
-	
+	protected FileImage fileImage;
 
 	@Override
 	public T getModel() {
@@ -67,7 +70,7 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 		return model;
 	}
 	
-	//ÕâÀïµÄserviceÊÇµ¥ÀûµÄ£¬ËùÒÔ²»ÓÃµ£ĞÄÃ¿´Î¶¼»á´´½¨Ò»±é£¬ÆäÊµËûÃÇÖ»ĞèÒª¿ªÊ¼µÄÊ±ºò´´½¨Ò»±é¾ÍºÃÁË
+	//è¿™é‡Œçš„serviceæ˜¯å•åˆ©çš„ï¼Œæ‰€ä»¥ä¸ç”¨æ‹…å¿ƒæ¯æ¬¡éƒ½ä¼šåˆ›å»ºä¸€éï¼Œå…¶å®ä»–ä»¬åªéœ€è¦å¼€å§‹çš„æ—¶å€™åˆ›å»ºä¸€éå°±å¥½äº†
 	@Resource
 	protected CategoryService categoryService;
 	
@@ -76,6 +79,9 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	
 	@Resource
 	protected ProductService productService;
+	
+	@Resource
+	protected FileUpload fileUpload;
 		
 	
 	
@@ -164,10 +170,19 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	public void setJsonList(List<T> jsonList) {
 		this.jsonList = jsonList;
 	}
-	//get·½·¨±ØĞëÓĞ
+	//getæ–¹æ³•å¿…é¡»æœ‰
 	public List<T> getJsonList() {
 		return jsonList;
 	}
+
+	public FileImage getFileImage() {
+		return fileImage;
+	}
+
+	public void setFileImage(FileImage fileImage) {
+		this.fileImage = fileImage;
+	}
+	
 	
 
 }

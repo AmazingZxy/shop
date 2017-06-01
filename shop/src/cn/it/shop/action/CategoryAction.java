@@ -19,30 +19,30 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-//ModelDrean ´Ë½Ó¿Ú£¬±ØĞëÊµÏÖgetModel·½·¨£¬Õâ¸ö·½·¨ÄØ»á°Ñ·µ»ØµÄ¶ÔÏó´æ´¢Ñ¹µ½Õ»¶¥ÖĞ
+//ModelDrean æ­¤æ¥å£ï¼Œå¿…é¡»å®ç°getModelæ–¹æ³•ï¼Œè¿™ä¸ªæ–¹æ³•å‘¢ä¼šæŠŠè¿”å›çš„å¯¹è±¡å­˜å‚¨å‹åˆ°æ ˆé¡¶ä¸­
 @Controller
 @Scope("prototype")
 public class CategoryAction extends BaseAction<Category>{
 	
 	public String queryJoinAccount(){
-		//ÓÃÀ´´æ´¢·ÖÒ³µÄÊı¾İ
+		//ç”¨æ¥å­˜å‚¨åˆ†é¡µçš„æ•°æ®
 		pageMap = new HashMap<String,Object>();
 		
 		
-		//¸ù¾İ¹Ø¼ü×ÖºÍ·ÖÒ³µÄ²ÎÊı²éÑ¯ÏàÓ¦µÄÊı¾İ
+		//æ ¹æ®å…³é”®å­—å’Œåˆ†é¡µçš„å‚æ•°æŸ¥è¯¢ç›¸åº”çš„æ•°æ®
 		List<Category> categoryList = categoryService.queryJoinAccount(model.getType(), page, rows);
 		pageMap.put("rows", categoryList);
-		//¸ù¾İ¹Ø¼ü×Ö²éÑ¯×Ü¼ÇÂ¼Êı	
+		//æ ¹æ®å…³é”®å­—æŸ¥è¯¢æ€»è®°å½•æ•°	
 		pageMap.put("total", categoryService.getCount(model.getType()));
 		return "jsonMap";
 	}
 	
 	
 	public String deleteByIds(){
-		System.out.println("É¾³ıµÄidÎª£º"+ids);
-		categoryService.deleteByIds(ids);//¹ıÀ´µÄ»°ÏÂÃæ¾Í»áÖ´ĞĞ
+		System.out.println("åˆ é™¤çš„idä¸ºï¼š"+ids);
+		categoryService.deleteByIds(ids);//è¿‡æ¥çš„è¯ä¸‹é¢å°±ä¼šæ‰§è¡Œ
 		inputStream =  new ByteArrayInputStream("true".getBytes());
-		return "stream";//ÓÃÁ÷·µ»Ø
+		return "stream";//ç”¨æµè¿”å›
 	}
 	
 	public void save(){
