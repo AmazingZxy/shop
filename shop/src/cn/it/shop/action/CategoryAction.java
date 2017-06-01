@@ -55,4 +55,10 @@ public class CategoryAction extends BaseAction<Category>{
 		categoryService.update(model);
 	}
 	
+	public String query(){
+//		System.out.println(model);
+		jsonList = categoryService.query();
+		return "jsonList";
+	}
+	
 }
